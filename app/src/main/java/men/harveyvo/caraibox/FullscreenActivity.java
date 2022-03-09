@@ -74,7 +74,7 @@ public class FullscreenActivity extends AppCompatActivity {
         public void run() {
             try {
                 AudioManager audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                focusGainResult = audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+                audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
             } catch (Exception exception) {
                 Log.e("AUDIO FOCUS", exception.getMessage());
             }
