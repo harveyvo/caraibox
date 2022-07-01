@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowInsets;
 
+import java.util.concurrent.TimeUnit;
+
 import men.harveyvo.caraibox.databinding.ActivityFullscreenBinding;
 
 /**
@@ -51,7 +53,6 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         }
     };
-    private int focusGainResult;
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
@@ -74,7 +75,8 @@ public class FullscreenActivity extends AppCompatActivity {
         public void run() {
             try {
                 AudioManager audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+                 audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+
             } catch (Exception exception) {
                 Log.e("AUDIO FOCUS", exception.getMessage());
             }
@@ -86,7 +88,7 @@ public class FullscreenActivity extends AppCompatActivity {
         public void run() {
             try {
                 AudioManager audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                focusGainResult = audioManager.abandonAudioFocus(null);
+                int focusGainResult = audioManager.abandonAudioFocus(null);
             } catch (Exception exception) {
                 Log.e("AUDIO FOCUS", exception.getMessage());
             }
@@ -123,10 +125,18 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void doAction() {
-        mHideHandler.postDelayed(focusAudioRunnable, 0);
+        mHideHandler.postDelayed(focusAudioRunnable, 4000);
         mHideHandler.postDelayed(abandonAudioRunnable, 1000);
         openDefaultApp();
-        mHideHandler.postDelayed(exitAppRunnable, 3000);
+        while (true){
+            try {
+                TimeUnit.SECONDS.sleep(5);
+                Log.d("Debug", "Sleep");
+            }catch (Exception e){
+
+            }
+        }
+       // mHideHandler.postDelayed(exitAppRunnable, 3000);
     }
 
 
@@ -168,4 +178,6 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+
 }

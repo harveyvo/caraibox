@@ -17,7 +17,7 @@
     <style name="Theme.CarAIBox.Fullscreen" parent="Theme.CarAIBox">
         <item name="android:actionBarStyle">@style/Widget.Theme.CarAIBox.ActionBar.Fullscreen</item>
         <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@null</item>
+        <item name="android:windowBackground">@mipmap/yuki_auto</item>
     </style>
 
     <style name="ThemeOverlay.CarAIBox.FullscreenContainer" parent="">
