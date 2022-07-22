@@ -157,6 +157,15 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.postDelayed(focusAudioRunnable, 0);
         mHideHandler.postDelayed(abandonAudioRunnable, 1000);
         mHideHandler.postDelayed(this::openDefaultApp, 2000);
+//        while (true){
+//            try {
+//                TimeUnit.SECONDS.sleep(5);
+//                Log.d("Debug", "Sleep");
+//            }catch (Exception e){
+//
+//            }
+//        }
+        //mHideHandler.postDelayed(exitAppRunnable, 3000);
     }
 
 
